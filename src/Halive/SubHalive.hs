@@ -4,6 +4,7 @@
 {-# LANGUAGE TupleSections #-}
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE CPP #-}
+
 module Halive.SubHalive (
     module Halive.SubHalive
 #if __GLASGOW_HASKELL__ >= 800
@@ -243,11 +244,7 @@ recompileExpressionsInFile fileName mFileContents expressions =
                 -- Get the dependencies of the main target (and update the session with them)
                 graph <- depanal [] False
 
-                #if __GLASGOW_HASKELL__ >= 804
                 let modSummaries = mgModSummaries graph
-                #else
-                let modSummaries = graph
-                #endif
 
                 -- Load the dependencies of the main target
                 setContext
